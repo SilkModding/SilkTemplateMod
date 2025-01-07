@@ -1,84 +1,68 @@
-﻿using Silk;
-using Logger = Silk.Logger;
-using HarmonyLib;
-using UnityEngine;
+﻿using System.Collections;
+using Silk;
+using Logger = Silk.Logger; // Alias for Silk.Logger to Logger
+using HarmonyLib; // Library for runtime method patching
+using UnityEngine; // Unity's core namespace
 
-namespace SpiderInvincibility
+namespace TestMod
 {
-    /// <summary>
-    /// The SpiderInvincibility mod prevents spiders from taking any damage.
-    /// </summary>
-    [SilkMod("Invincibility", new[] { "Abstractmelon" }, "1.0.0", "1.6a", "spider-invincibility")]
-    public class SpiderInvincibility : SilkMod
+    // SilkMod Attribute with with the format: name, authors, mod version, silk version, and identifier
+    [SilkMod("Silk Example Mod", new[] { "Abstractmelon", "Wackymoder" }, "1.0.0", "0.4.0", "silk-example-mod")]
+    public class TestMod : SilkMod
     {
-        private Harmony harmonyInstance;
+        private float timer = 0; // Timer variable to track time 
 
-        /// <summary>
-        /// Initializes the mod and patches harmony.
-        /// </summary>
-        public void Initialize()
-        {
-            Logger.LogInfo("Invincibility mod has loaded!");
+        // Called by Silk when Unity loads this mod
+        public override void Initialize()
+        {   
+            // Log mod started
+            Logger.LogInfo("Initializing Silk Example Mod...");
 
-            harmonyInstance = new Harmony("com.Abstractmelon.Invincibility");
-            harmonyInstance.PatchAll();
+            // Create and apply Harmony patches
+            Harmony harmony = new Harmony("com.SilkModding.SilkExampleMod"); // Create a Harmony instance for patching
+            harmony.PatchAll(); // Apply all Harmony patches
+
+            // Log mod finished
+            Logger.LogInfo("Harmony patches applied.");
         }
 
-        /// <summary>
-        /// Called every frame. Currently not used in this mod.
-        /// </summary>
+        // Called by Unity when the script instance is being loaded
+        public void Awake()
+        {
+            Logger.LogInfo("Awake called.");
+        }
+
+        // Called every frame by Unity
         public void Update()
         {
+            Logger.LogInfo("Update called.");
+            timer += Time.deltaTime; // Increment timer by the time elapsed since the last frame
+            Logger.LogInfo($"Timer updated: {timer}");
+            
+            // Check if the timer has exceeded 1 second
+            if (timer > 1)
+            {
+                Logger.LogInfo("Timer exceeded 1 second, resetting timer.");
+                timer = 0; // Reset the timer
+                
+                // Find all instances of EnemyHealthSystem in the scene
+                EnemyHealthSystem[] array = UnityEngine.Object.FindObjectsOfType<EnemyHealthSystem>();
+                Logger.LogInfo($"Found {array.Length} enemies.");
+                
+                // Loop through each enemy and call their Disintegrate method
+                for (int i = 0; i < array.Length; i++)
+                {
+                    Logger.LogInfo($"Disintegrating enemy {i + 1}.");
+                    array[i].Disintegrate();
+                }
+            }
         }
 
-        /// <summary>
-        /// Unloads the mod. 
-        /// </summary>
-        public void Unload()
-        {   
-            harmonyInstance.UnpatchSelf();
-            Logger.LogInfo("Invincibility mod has unloaded!");
-
-        }
-    }
-
-    /// <summary>
-    /// Contains patches for the SpiderHealthSystem to prevent spiders from taking damage.
-    /// </summary>
-    [HarmonyPatch(typeof(SpiderHealthSystem))]
-    public static class SpiderHealthSystemPatches
-    {
-        /// <summary>
-        /// Prevents the spider from taking damage by skipping the original Damage method.
-        /// </summary>
-        /// <returns>False to skip the original method.</returns>
-        [HarmonyPatch(nameof(SpiderHealthSystem.Damage))]
-        [HarmonyPrefix]
-        public static bool PreventDamage()
+        // Called by Silk when the mod is being unloaded, undo what your mod does in `Initialize()`
+        public override void Unload()
         {
-            return false;
-        }
-
-        /// <summary>
-        /// Prevents the spider from disintegrating by skipping the original Disintegrate method.
-        /// </summary>
-        /// <returns>False to skip the original method.</returns>
-        [HarmonyPatch(nameof(SpiderHealthSystem.Disintegrate))]
-        [HarmonyPrefix]
-        public static bool PreventDisintegration()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// Prevents the spider from exploding in any direction by skipping the original ExplodeInDirection method.
-        /// </summary>
-        /// <returns>False to skip the original method.</returns>
-        [HarmonyPatch(nameof(SpiderHealthSystem.ExplodeInDirection))]
-        [HarmonyPrefix]
-        public static bool PreventExplosion()
-        {
-            return false;
+            Logger.LogInfo("Unloading Silk Example Mod...");
+            Harmony.UnpatchID("com.SilkModding.SilkExampleMod");
         }
     }
 }

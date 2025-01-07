@@ -3,7 +3,7 @@
   <!-- Mod Info -->
   <PropertyGroup>
     <!-- Mod name -->
-    <Title>Invincibility</Title>
+    <Title>TemplateMod</Title>
 
     <!-- Version -->
     <Version>1.0.0</Version>
@@ -162,4 +162,5 @@
     <PackageReference Include="HarmonyX" Version="2.13.0" />
   </ItemGroup>
 </Project>
+
 
