@@ -27,6 +27,10 @@
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="SilkLoader" Version="0.4.0" />
+  </ItemGroup>
+
   <!-- Assembly References -->
   <ItemGroup>
     <Reference Include="GdkUtilities">
@@ -135,10 +139,6 @@
     </Reference>
     <Reference Include="DOTween.Modules">
       <HintPath>./lib/DOTween.Modules.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-    <Reference Include="Silk">
-      <HintPath>./lib/Silk.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="UnityEngine.Physics2DModule">
