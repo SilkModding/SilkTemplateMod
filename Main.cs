@@ -7,7 +7,7 @@ using UnityEngine;
 namespace TemplateMod
 {
     // SilkMod Attribute with with the format: name, authors, mod version, silk version, mod identifier, and networking type
-    [SilkMod("Silk Mod", new[] { "Abstractmelon" }, "1.0.0", "0.5.0", "silk-mod", 1)]
+    [SilkMod("Silk Mod", new[] { "Abstractmelon" }, "1.0.0", "0.6.0", "silk-mod", 1)]
     public class TemplateMod : SilkMod
     {
         private float timer = 0; // Timer variable to track time 

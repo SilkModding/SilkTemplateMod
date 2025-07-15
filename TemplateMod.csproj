@@ -18,7 +18,7 @@
     <RepositoryUrl>https://github.com/SilkModding/SilkTemplateMod</RepositoryUrl>
     <RepositoryType>Git</RepositoryType>
 
-    <!-- You wont need to change this stuff -->
+    <!-- You won't need to change this stuff -->
 
     <!-- Output Type -->
     <OutputType>library</OutputType>
@@ -28,7 +28,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SilkLoader" Version="0.5.0" />
+    <PackageReference Include="SilkLoader" Version="0.6.0" />
   </ItemGroup>
 
   <!-- Assembly References -->

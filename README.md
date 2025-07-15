@@ -2,10 +2,6 @@
 
 A template mod for [SpiderHeck](https://store.steampowered.com/app/1329500/SpiderHeck/) using [Silk](https://github.com/SilkModding/Silk).
 
-## What is Silk?
-
-Silk is a modding API for SpiderHeck. Silk allows you to easily create and manage mods for SpiderHeck, using the "power" of .NET and C#.
-
 ## What is this mod?
 
 This mod is a template mod, which means it's a starting point for you to create your own mods. It includes a basic example of how to create a mod, and how to use some of the features of Silk.
