@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace TemplateMod
 {
-    [SilkMod("Silk Mod", new[] { "Abstractmelon" }, "1.0.0", "0.6.0", "silk-mod", 1)]
+    [SilkMod("Silk Mod", new[] { "Abstractmelon" }, "1.0.0", "0.6.1", "silk-mod", 1)]
     public class TemplateMod : SilkMod
     {
         public const string ModId = "silk-mod";

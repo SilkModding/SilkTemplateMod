@@ -28,7 +28,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SilkLoader" Version="0.6.0" />
+    <PackageReference Include="SilkLoader" Version="0.6.1" />
   </ItemGroup>
 
   <!-- Assembly References -->
